@@ -6,13 +6,16 @@
 </head>
 <body>
 <h2>Авторизация</h2>
-    <form method="POST">
+    <form method="POST" action="{% url 'login_view' %}">
         {% csrf_token %}
         <input type="text" name="username" placeholder="Логин" required>
-        <input type="text" name="password" placeholder="Пароль" required>
+        <input type="password" name="password" placeholder="Пароль" required>
         <button type="submit">Войти</button>
-
-
     </form>
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-info">{{ message }}</div>
+    {% endfor %}
+{% endif %}
 </body>
 </html>
