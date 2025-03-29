@@ -28,16 +28,12 @@ def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-
-        print(f"Attempting to log in with Username: {username}, Password: {password}")
-
         user = authenticate(request, username=username,password=password)
         if user is not None:
             login(request, user)
-            messages.success(request, 'Вы авторизованы')
+            messages.success(request, 'Вы авторизированы')
             return redirect('index')
         else:
-            print(f"Login failed for user: {username}")
             messages.error(request,'Неверный логин или пароль')
             return render(request, 'login.html')
 
